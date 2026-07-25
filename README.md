@@ -17,20 +17,23 @@ In customer retention, missing a customer who is about to leave (False Negative)
 
 ## Results & Precision-Recall Optimization
 
-By switching from a default baseline boosting model to a class-weighted model with a custom decision threshold ($0.15$), the pipeline achieved a significant business-driven optimization:
+By shifting from a default baseline model to a class-weighted Gradient Boosting architecture with a custom decision threshold ($0.15$), the pipeline achieved a massive business-driven optimization:
 
-| Model Approach | Threshold | Recall (Class 1) | Precision (Class 1) | Business Impact |
-| :--- | :---: | :---: | :---: | :--- |
-| Default Unbalanced | 0.02 | **90%** | 40% | 60% false alarms; high budget waste |
-| **Weighted + Tuned (Final)** | **0.15** | **88%** | **61%** | **Captures 88% of churn while reducing false alarms by 21%** |
+| Model / Approach | Decision Threshold | Recall (Class 1) | Precision (Class 1) | F1-Score | Global Accuracy |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| 1. Vanilla Logistic Regression (Baseline) | 0.50 | 20% | 62% | 0.30 | 0.87 |
+| 2. Balanced Logistic Regression | 0.50 | 71% | 35% | 0.47 | 0.78 |
+| 3. HistGradientBoosting (All features) | 0.50 | 77% | 92% | 0.83 | 0.95 |
+| 4. **Slim HGB + Custom Threshold (Final)** | **0.15** | **88%** | **61%** | **0.72** | **0.90** |
 
-The final model relies on the top 8 features, led by `total_day_minutes`, `number_customer_service_calls`, and `international_plan`.
+**Business Impact:** The final optimized pipeline captures **88% of all at-risk customers** (retaining critical subscriber revenue), while maintaining an optimal Precision of 61% to prevent the marketing department from wasting retention budget on false alarms.
+
 
 ## Repository Structure
 * `notebook.ipynb` - Complete Jupyter Notebook with data processing, modeling, and evaluation.
 * `README.md` - Project documentation.
 
-## Technical Stack
-* Python
-* Pandas, NumPy
-* Scikit-Learn (HistGradientBoostingClassifier, Permutation Importance)
+## 🛠️ Technical Stack
+* **Language:** Python 3
+* **Machine Learning:** Scikit-Learn (`HistGradientBoostingClassifier`, `RandomForestClassifier`, `LogisticRegression`, `permutation_importance`, `compute_sample_weight`)
+* **Data Pipelines:** Pandas, NumPy, OpenML API
