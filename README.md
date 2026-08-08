@@ -311,9 +311,17 @@ Several thresholds were evaluated.
          0.20     0.87        0.67
          0.25     0.84        0.71
 
-A threshold of **0.15** was selected for the final experiment because it
-substantially increased recall while retaining a moderate level of
-precision.
+### Threshold Selection
+
+A threshold of **0.15** was selected to prioritize recall for the churn class.
+It achieved **0.88 recall** and **0.61 precision**, compared with
+**0.87 recall** and **0.67 precision** at threshold 0.20.
+
+The choice therefore represents a deliberate trade-off: a small additional
+gain in recall was accepted in exchange for lower precision. No explicit
+business costs for false positives and false negatives were available, so
+the threshold should be regarded as an experimental business-oriented
+choice rather than a mathematically optimal operating point.
 
 # Final Model
 
