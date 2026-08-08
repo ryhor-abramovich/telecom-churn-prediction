@@ -413,7 +413,7 @@ false positives.
 telecom-churn-prediction/
 │
 ├── README.md
-└── notebook.ipynb
+└── telecom-churn-prediction.ipynb
 ```
 
 # What This Project Demonstrates
